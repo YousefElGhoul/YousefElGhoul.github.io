@@ -42,8 +42,7 @@
 				<span class="material-symbols-outlined">home</span>
 			</h1>
 		</a>
-		<div class="grow">
-		</div>
+		<div class="grow"></div>
 		<!-- <a class="header-link" href="/certifications">
 			<h1>
 				Certifications	
@@ -61,22 +60,33 @@
 				Experience
 			</h1>
 		</a>
-		<h1 class="px-2">&#8226</h1>
-		<a class="header-link gap-1" href="https://resume.yousefelghoul.dev" target="_blank">
-			<h1>
+		<h1 class="hidden px-2 md:inline">&#8226</h1>
+		<a class="header-link gap-1 hidden md:inline" href="https://resume.yousefelghoul.dev" target="_blank">
+			<h1 class="hidden md:inline">
 				Resume
 			</h1>
-			<span class="material-symbols-outlined !text-xs xl:!text-xl">open_in_new</span>
+			<h1 class="hidden md:inline">
+				<span class="material-symbols-outlined !text-xs xl:!text-xl !hidden md:!inline">open_in_new</span>
+			</h1>
+		</a>
+		<div class="md:hidden grow"></div>
+		<a href="https://resume.yousefelghoul.dev" target="_blank">
+			<button
+				id="resume"
+				type="button"
+				class="md:hidden p-2 rounded-xl hover:bg-slate-400 hover:dark:bg-slate-700 active:bg-slate-400 active:dark:bg-slate-700 transition-colors flex items-center justify-center"		>
+				<span class="material-symbols-outlined">article</span>
+			</button>		
 		</a>
 		<button
 			id="themeToggle"
 			type="button"
-			class="p-2.5 rounded-xl bg-slate-400 hover:bg-zinc-300 dark:bg-slate-700 dark:hover:bg-zinc-700 transition-colors flex items-center justify-center shadow-sm"
+			class="p-2 rounded-xl hover:bg-slate-400 hover:dark:bg-slate-700 active:bg-slate-400 active:dark:bg-slate-700 transition-colors flex items-center justify-center"
 		>
-		<span id="lightModeIcon" class="material-symbols-outlined text-xl" hidden>
+		<span id="lightModeIcon" class="material-symbols-outlined text-xs" hidden>
 			light_mode
 		</span>
-		<span id="darkModeIcon" class="material-symbols-outlined text-xl">
+		<span id="darkModeIcon" class="material-symbols-outlined text-xs">
 			dark_mode
 		</span>
 		</button>
@@ -87,10 +97,5 @@
 
 	.header-link {
 		@apply uppercase text-xs xl:text-xl flex xl:gap-0.5 justify-center items-center hover:text-slate-800 dark:hover:text-slate-400 transition duration-300 ease-in-out
-	}
-
-	#lightModeIcon[hidden],
-	#darkModeIcon[hidden] {
-		display: none;
 	}
 </style>
