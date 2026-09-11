@@ -1,11 +1,20 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Main from '../layouts/Main.astro';
+import Header from '../components/Header.astro';
+import MainContent from '../components/MainPage.astro';
+import Footer from '../components/Footer.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+Astro.response.headers.set('Content-Type', 'text/html; charset=utf-8');
+
+const HEADLINE = 'Software Engineer | Backend Development | Java, Spring Boot' as const;
+const EDUCATION = 'B.Sc. in Computer Science and Artificial Intelligence from Capital University (fka Helwan)' as const;
 ---
+<head>
+	<title>YG | Main Page</title>
+</head>
 
-<Layout>
-	<Welcome />
-</Layout>
+<Main>
+	<Header />
+	<MainContent headline={HEADLINE} education={EDUCATION} />
+	<Footer />
+</Main>

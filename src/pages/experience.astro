@@ -1,0 +1,22 @@
+---
+import Main from '../layouts/Main.astro';
+import Header from '../components/Header.astro';
+import MainContent from '../components/ExperiencePage.astro';
+import Experience from '../components/JobExperience.astro';
+import Footer from '../components/Footer.astro';
+
+Astro.response.headers.set('Content-Type', 'text/html; charset=utf-8');
+---
+<head>
+	<title>YG | Main Page</title>
+</head>
+
+<Main>
+	<Header />
+	<MainContent>
+		<Experience />
+		<Experience />
+		<Experience />
+	</MainContent>
+	<Footer />
+</Main>
