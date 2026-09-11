@@ -1,0 +1,65 @@
+---
+export interface Company {
+    name: string;
+    link: string;
+}
+
+export interface Job {
+    type: string;
+    company: Company;
+    title: string;
+    city: string;
+    time: string;
+    description: string;
+    skills: string[];
+}
+
+interface Props {
+  job: Job;
+}
+
+const { job } = Astro.props;
+---
+
+<div id="exp" class="flex flex-col xl:flex-row py-4 xl:py-2">
+    <h1 id="exp-type" class="xl:p-4 uppercase text-l font-extrabold text-blue-900 dark:text-blue-300">
+        { job.type }
+    </h1>
+    <div class="flex flex-col xl:px-4 grow">
+        <div id="exp-header" class="flex flex-col xl:py-4">
+            <div class="flex flex-row items-center justify-center gap-2">
+                <h1 class="text-2xl font-extrabold">
+                    { job.title }
+                </h1>
+                <div class="grow"></div>
+                <h1 class="text-slate-700 dark:text-slate-400 text-center">
+                    { job.time }
+                </h1>        
+            </div>
+            <div class="text-slate-400">
+                <div class="flex md:divide-x divide-x-0 divide-slate-700 dark:divide-slate-400 text-slate-700 dark:text-slate-400">
+                    <a class="md:px-4 md:pl-0 hover:text-slate-800 active:text-slate-800 dark:hover:text-slate-200 dark:active:text-slate-200 transition duration-300 ease-in-out" href={ job.company.link } target="_blank">
+                        { job.company.name }
+                    </a>
+                    <div class="grow md:hidden"></div>
+                    <p class="md:px-4">
+                        { job.city }
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="exp-body" class="xl:p-4 xl:py-4 xl:pl-0 py-2">
+            <p>
+                { job.description }
+            </p>
+        </div>
+        <div class="hidden xl:flex xl:pl-0 flex-col xl:flex-row divide-y xl:divide-x xl:divide-y-0 divide-slate-700 dark:divide-slate-400 text-slate-700 dark:text-slate-400 xl:px-4">
+            {job.skills.map((skill) => (
+                <p class="px-4">{ skill }</p>
+            ))}
+        </div>
+        <div class="divide-slate-700 dark:divide-slate-400 text-slate-700 dark:text-slate-400 py-2 xl:hidden">
+            {job.skills.join(', ')}
+        </div>
+    </div>
+</div>
