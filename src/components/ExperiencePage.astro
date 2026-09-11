@@ -1,5 +1,10 @@
 ---
+interface Props {
+  jobs: Job[];
+}
 
+const { jobs } = Astro.props;
+import Experience, { type Job }  from '../components/JobExperience.astro';
 ---
 
 <div class="bg-slate-700 grow p-16 text-slate-200  flex flex-col">
@@ -9,5 +14,7 @@
         </h1>
         <hr class="border-t-2 border-slate-400 my-4">
 	</section>
-    <slot />
+    {jobs.map((job) => (
+        <Experience job={job} />
+    ))}
 </div>

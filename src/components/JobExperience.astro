@@ -1,46 +1,61 @@
 ---
+export interface Company {
+    name: string;
+    link: string;
+}
 
+export interface Job {
+    type: string;
+    company: Company;
+    title: string;
+    city: string;
+    time: string;
+    description: string;
+    skills: string[];
+}
+
+interface Props {
+  job: Job;
+}
+
+const { job } = Astro.props;
 ---
 
 <div id="exp" class="flex py-2">
     <h1 id="exp-type" class="p-4 uppercase text-l font-extrabold text-blue-300">
-        Type of Experience
+        { job.type }
     </h1>
     <div class="flex flex-col px-4 grow">
         <div id="exp-header" class="flex py-4">
             <div class="flex flex-col">
                 <h1 class="text-2xl font-extrabold">
-                    Job Title
+                    { job.title }
                 </h1>
                 <div class="flex divide-x divide-slate-400 text-slate-400">
+                    <a class="px-4" href={ job.company.link } target="_blank">
+                        { job.company.name }
+                    </a>
                     <p class="px-4">
-                        Place of Work
-                    </p>
-                    <p class="px-4">
-                        City
+                        { job.city }
                     </p>
                 </div>
             </div>
             <div class="grow"></div>
             <div class="text-slate-400">
                 <h1>
-                    Time
+                    { job.time }
                 </h1>
             </div>
         </div>
         <div id="exp-body" class="p-4">
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio beatae a, aspernatur amet placeat labore tempore nulla sapiente provident iure numquam culpa, libero atque laboriosam. Tempore sapiente dicta amet!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio beatae a, aspernatur amet placeat labore tempore nulla sapiente provident iure numquam culpa, libero atque laboriosam. Tempore sapiente dicta amet!
+                { job.description }
             </p>
         </div>
         <div class="flex divide-x divide-slate-400 text-slate-400 px-4">
-            <p class="px-4">Time</p>
-            <p class="px-4">Time</p>
-            <p class="px-4">Time</p>
-            <p class="px-4">Time</p>
-            <p class="px-4">Time</p>
-            <p class="px-4">Time</p>
+            {job.skills.map((skill) => (
+                <p class="px-4">{ skill }</p>
+            ))}
         </div>
     </div>
 </div>

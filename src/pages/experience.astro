@@ -1,22 +1,66 @@
 ---
 import Main from '../layouts/Main.astro';
 import Header from '../components/Header.astro';
-import MainContent from '../components/ExperiencePage.astro';
-import Experience from '../components/JobExperience.astro';
 import Footer from '../components/Footer.astro';
+import { type Job } from '../components/JobExperience.astro';
+import MainContent from '../components/ExperiencePage.astro';
 
-Astro.response.headers.set('Content-Type', 'text/html; charset=utf-8');
+const myJobs: Job[] = [
+  {
+    type: "Internship",
+    company: {
+		name: "pulse by solution (fka Giza Systems)",
+		link: "https://pulsebysolutions.com/"
+	},
+    title: "Full Stack Intern | GDC",
+    city: "Cairo, Egypt",
+    time: "Aug 2026",
+    description:
+      "Built RESTful APIs with Spring Boot using a layered controller-service-repository architecture. Implemented JWT-based authentication, role-based access control, and ownership-based authorization for user-scoped resources. Integrated Angular frontend functionality with backend APIs and applied centralized exception handling and stateless security filtering.",
+    skills: [
+      "Java",
+      "Spring Boot",
+      "REST APIs",
+      "JWT",
+      "RBAC",
+      "Spring Security",
+      "Angular",
+      "TypeScript",
+      "PostgreSQL",
+      "JPA / Hibernate"
+    ],
+  },
+  {
+    type: "Internship",
+    company: {
+		name: "Giza Systems",
+		link: "https://pulsebysolutions.com/"
+	},
+    title: "Software Testing Intern | EBS",
+    city: "Cairo, Egypt",
+    time: "Jul 2024",
+    description:
+      "Worked within a collaborative QA team and gained hands-on experience with the Software Development Life Cycle and Software Testing Life Cycle. Designed and executed test scenarios and test cases, reported and tracked defects, and practiced regression testing and structured QA documentation.",
+    skills: [
+      "Software Testing",
+      "Manual Testing",
+      "Test Cases",
+      "Test Scenarios",
+      "Bug Reporting",
+      "Regression Testing",
+      "SDLC",
+      "STLC",
+      "Quality Assurance"
+    ],
+  }
+];
 ---
 <head>
-	<title>YG | Main Page</title>
+	<title>YG | Experience</title>
 </head>
 
 <Main>
 	<Header />
-	<MainContent>
-		<Experience />
-		<Experience />
-		<Experience />
-	</MainContent>
+	<MainContent jobs={myJobs} />
 	<Footer />
 </Main>
