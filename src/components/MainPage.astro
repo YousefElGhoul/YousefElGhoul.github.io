@@ -29,21 +29,21 @@ const { headline, education } = Astro.props;
 				</g>
 			</svg>
 		</div>
-		<hr class="border-t-2 border-slate-800 my-4">
-		<div id="caption" class="flex flex-col text-slate-200">
-			<div>
-				<p>
-					{headline}	
+		<hr class="border-t-2 border-slate-200 my-4">
+		<div id="caption" class="flex flex-row text-slate-200 divide-x divide-slate-200">
+			<div class="flex flex-col">
+				<p class="uppercase text-l font-extrabold text-blue-300 px-4">
+					headline
 				</p>
-			</div>
-			<div class="flex flex-row">
-				<p class="uppercase">
+				<p class="uppercase text-l font-extrabold text-blue-300 px-4">
 					education
 				</p>
-				<p class="px-2">
-					|
+			</div>
+			<div class="flex flex-col">
+				<p class="px-4">
+					{headline}	
 				</p>
-				<p>
+				<p class="px-4">
 					{education}	
 				</p>
 			</div>
