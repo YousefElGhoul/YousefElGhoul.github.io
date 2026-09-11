@@ -3,7 +3,7 @@ import "../styles/global.css";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +14,23 @@ import "../styles/global.css";
 		
 		<meta name="generator" content={Astro.generator} />
 	</head>
-	<body>
+	<script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+          return localStorage.getItem("theme");
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      })();
+      
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+      
+      window.localStorage.setItem("theme", theme);
+    </script>
+	<body class="text-slate-900 dark:text-slate-200">
 		<slot />
 	</body>
 </html>
