@@ -2,10 +2,13 @@
 
 ---
 
-<div class="flex gap-4 justify-center items-center p-4 bg-slate-800">
-		<a class="uppercase text-2xl flex gap-0.5 justify-center items-center text-slate-200 font-extrabold hover:text-slate-400 transition duration-300 ease-in-out" href="/">
-			<h1>
+<div class="flex flex-wrap xl:gap-4 justify-center items-center p-4 bg-slate-800 flex-none w-full">
+		<a class="uppercase text-xs xl:text-2xl flex shrink-0 xl:gap-0.5 justify-center items-center text-slate-200 font-extrabold hover:text-slate-400 transition duration-300 ease-in-out" href="/">
+			<h1 class="hidden md:block">
 				Yousef El-Ghoul
+			</h1>
+			<h1 class="md:hidden">
+				<i class="fa-regular fa-house"></i>
 			</h1>
 		</a>
 		<div class="grow">
@@ -28,11 +31,11 @@
 			</h1>
 		</a>
 		<h1 class="px-2 text-slate-200">&#8226</h1>
-		<a class="header-link" href="https://resume.yousefelghoul.dev" target="_blank">
+		<a class="header-link gap-1" href="https://resume.yousefelghoul.dev" target="_blank">
 			<h1>
 				Resume
 			</h1>
-			<span class="material-symbols-outlined">open_in_new</span>
+			<i class="fa-solid fa-arrow-up-right-from-square"></i>
 		</a>
 		<!-- <button class="flex justify-center items-center rounded-4xl bg-slate-900 text-slate-200 p-2 w-10 h-10">
 			<h1>
@@ -46,6 +49,6 @@
 	@reference "tailwindcss";
 
 	.header-link {
-		@apply uppercase text-xl flex gap-0.5 justify-center items-center text-slate-200 hover:text-slate-400 transition duration-300 ease-in-out
+		@apply uppercase text-xs xl:text-xl flex xl:gap-0.5 justify-center items-center text-slate-200 hover:text-slate-400 transition duration-300 ease-in-out
 	}
 </style>

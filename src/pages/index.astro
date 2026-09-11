@@ -1,11 +1,20 @@
 ---
 import Main from '../layouts/Main.astro';
 import Header from '../components/Header.astro';
-import MainContent from '../components/MainPage.astro';
+import MainContent, { type HnE } from '../components/MainPage.astro';
 import Footer from '../components/Footer.astro';
 
-const HEADLINE = 'Software Engineer | Backend Development | Java, Spring Boot' as const;
-const EDUCATION = 'B.Sc. in Computer Science and Artificial Intelligence from Capital University (fka Helwan)' as const;
+const HnE: HnE = {
+  headline: {
+    jobTitle: "Software Engineer",
+    expertise: "Backend Development",
+	technologies: [
+      "Java",
+      "Spring Boot"
+    ],
+  },
+  education: "B.Sc. in Computer Science and Artificial Intelligence from Capital University (fka Helwan)"
+}
 ---
 <head>
 	<title>YG | Main Page</title>
@@ -13,6 +22,6 @@ const EDUCATION = 'B.Sc. in Computer Science and Artificial Intelligence from Ca
 
 <Main>
 	<Header />
-	<MainContent headline={HEADLINE} education={EDUCATION} />
+	<MainContent HnE={HnE} />
 	<Footer />
 </Main>
