@@ -1,6 +1,6 @@
 ---
 import ProjectCard from '../components/ProjectCard.astro';
-import { type Project } from "../components/ProjectDetailsPage.astro"
+import type { Project } from "../lib/projects";
 
 interface Props {
   projects: Project[];
@@ -19,4 +19,9 @@ const { projects } = Astro.props;
     {projects.map((project) => (
         <ProjectCard project={project} />
     ))}
+    {projects.length === 0 && (
+        <p class="text-slate-700 dark:text-slate-400">
+            No portfolio projects are currently published.
+        </p>
+    )}
 </div>

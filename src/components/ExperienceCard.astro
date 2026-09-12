@@ -53,12 +53,10 @@ const { job } = Astro.props;
                 { job.description }
             </p>
         </div>
-        <div class="hidden xl:flex xl:pl-0 flex-col xl:flex-row divide-y xl:divide-x xl:divide-y-0 divide-slate-700 dark:divide-slate-400 text-slate-700 dark:text-slate-400 xl:px-4">
-            {job.skills.map((skill) => (
-                <p class="px-4">{ skill }</p>
-            ))}
+        <div class="hidden xl:flex xl:pl-0 flex-col xl:flex-row  text-slate-700 dark:text-slate-400 xl:px-4">
+            {job.skills.join(', ')}
         </div>
-        <div class="divide-slate-700 dark:divide-slate-400 text-slate-700 dark:text-slate-400 py-2 xl:hidden">
+        <div class=" text-slate-700 dark:text-slate-400 py-2 xl:hidden">
             {job.skills.join(', ')}
         </div>
     </div>

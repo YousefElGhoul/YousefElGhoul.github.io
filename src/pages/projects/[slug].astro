@@ -1,0 +1,28 @@
+---
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import ProjectDetailsPage from '../../components/ProjectDetailsPage.astro';
+import Main from '../../layouts/Main.astro';
+import { getProjects, type Project } from '../../lib/projects';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props as { project: Project };
+---
+
+<head>
+  <title>YG | {project.title}</title>
+</head>
+
+<Main>
+  <Header />
+  <ProjectDetailsPage project={project} />
+  <Footer />
+</Main>

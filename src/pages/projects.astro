@@ -3,66 +3,9 @@ import Main from '../layouts/Main.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MainContent from '../components/ProjectsPage.astro';
-import type { Project } from '../components/ProjectDetailsPage.astro';
+import { getProjects } from '../lib/projects';
 
-// Temporary till collections are implemented
-const myProjects: Project[] = [
-  {
-    category: [
-      "AI",
-      "Full Stack"
-    ],
-    title: "PureSkin",
-    subtitle: "AI-Powered Skin Analysis Platform",
-    status: "Completed",
-    description: "Built a full-stack web application that analyzes facial images to classify skin type and detect skin conditions including acne, pigmentation, wrinkles, blackheads, and dark circles. Integrated trained machine learning and computer vision models behind a FastAPI backend with a React frontend.",
-    year: "2025",
-    technologies: [
-      "React",
-      "FastAPI",
-      "Python",
-      "YOLOv8",
-      "TensorFlow",
-      "Computer Vision",
-      "Machine Learning",
-      "REST APIs"
-    ],
-    repository: {
-      provider: "GitHub",
-      owner: "PureSkin25",
-      link: ""
-    },
-    slug: "pureskin",
-    live: ""
-  },
-  {
-    category: ["Infrastructure"],
-    title: "OpenCode Stack",
-    subtitle: "Containerized Remote Development Environment",
-    status: "Completed",
-    description: "Built a containerized OpenCode environment designed for reproducible remote development with persistent configuration, backups, safe host integration, and remote access. The setup keeps development tooling isolated while preserving convenient access to repositories and configuration files on the host.",
-    year: "2026",
-    technologies: [
-      "Docker",
-      "Linux",
-      "OpenCode",
-      "Tailscale",
-      "Shell",
-      "DevOps",
-      "Containerization"
-    ],
-    repository: {
-      provider: "GitHub",
-      owner: "YousefElGhoul",
-      name: "opencode-stack",
-      link: "https://github.com/YousefElGhoul/opencode-stack"
-    },
-    slug: "opencode-stack",
-    live: "https://yousefelghoul.dev"
-  }
-]
-
-
+const myProjects = await getProjects();
 ---
 <head>
 	<title>YG | Projects</title>
