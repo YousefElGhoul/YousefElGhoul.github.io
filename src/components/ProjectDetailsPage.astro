@@ -1,0 +1,32 @@
+---
+export interface ProjectRepository {
+  provider: "GitHub" | "GitLab";
+  owner?: string;
+  name?: string;
+  link: string;
+}
+
+export interface Project {
+  category: string[];
+  title: string;
+  subtitle: string;
+
+  year?: string;
+  status?: "Active" | "Completed" | "Maintained" | "Archived" | "Planned";
+//          Orange       Green          Lime          Grey        Yellow
+
+  description: string;
+
+  technologies: string[];
+
+  repository: ProjectRepository;
+
+  live?: string;
+
+  slug: string;
+}
+
+interface Props {
+  project: Project;
+}
+---

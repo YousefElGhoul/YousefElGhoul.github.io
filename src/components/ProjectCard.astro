@@ -1,0 +1,76 @@
+---
+import { type Project } from "../components/ProjectDetailsPage.astro"
+
+const { project } = Astro.props as { project: Project };
+const liveUrl = project.live;
+const statusColorMap: Record<NonNullable<Project['status']>, string> = {
+  Active: 'text-orange-800 dark:text-orange-400',
+  Completed: 'text-green-800 dark:text-green-400',
+  Maintained: 'text-lime-800 dark:text-lime-400',
+  Archived: 'text-gray-800 dark:text-gray-400',
+  Planned: 'text-yellow-800 dark:text-yellow-400',
+};
+
+const status = project.status;
+---
+
+<article id="project" class="flex flex-col xl:flex-row py-4 xl:py-2">
+  <h1 id="project-type" class="xl:p-4 uppercase text-l font-extrabold text-blue-900 dark:text-blue-300 min-w-3xs">
+      { project.category.join(', ') }
+  </h1>
+  <div class="flex flex-col xl:px-4 grow">
+    <div id="project-header" class="flex flex-col xl:py-4">
+      <div class="flex flex-row items-center justify-center gap-2">
+        <h1 class="text-2xl font-extrabold">
+            { project.title }
+        </h1>
+        <div class="grow"></div>
+        <h1 class="text-slate-700 dark:text-slate-400 text-center">
+            { project.year }
+        </h1>        
+      </div>
+      <div class="flex text-slate-700 dark:text-slate-400">
+        <p class="text-slate-700 dark:text-slate-400 text-center">
+            { project.subtitle }
+        </p>
+        <div class="grow"></div>
+        <p class:list={["text-center font-extrabold", status ? statusColorMap[status] : "hidden"]}>
+          {status}
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-4 pt-2 text-slate-700 dark:text-slate-400 justify-center">
+        <a
+          href={ project.repository.link }
+          target="_blank"
+          rel="noreferrer"
+          class="hover:text-slate-800 active:text-slate-800 dark:hover:text-slate-200 dark:active:text-slate-200 transition duration-300 ease-in-out"
+        >
+          {project.repository.provider} <span class="material-symbols-outlined">arrow_outward</span>
+        </a>
+        <a
+          href={liveUrl ?? '#'}
+          target="_blank"
+          rel="noreferrer"
+          class={`'hover:text-slate-800 active:text-slate-800 dark:hover:text-slate-200 dark:active:text-slate-200 transition duration-300 ease-in-out ${!liveUrl ? 'hidden' : ''}`}
+        >
+          Live <span class="material-symbols-outlined">arrow_outward</span>
+        </a>
+
+        <a
+          href={ "/projects/" + project.slug }
+          class="hover:text-slate-800 active:text-slate-800 dark:hover:text-slate-200 dark:active:text-slate-200 transition duration-300 ease-in-out"
+        >
+          View Project <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+      <p class="xl:p-4 xl:py-4 xl:pl-0 py-2">
+        {project.description}
+      </p>
+      <div class="hidden xl:flex xl:pl-0 flex-col xl:flex-row divide-y xl:divide-x xl:divide-y-0 divide-slate-700 dark:divide-slate-400 text-slate-700 dark:text-slate-400 xl:px-4">
+        {project.technologies.map((technology) => (
+          <span class="px-4">{technology}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</article>
