@@ -1,0 +1,50 @@
+/*
+* Site palette
+*
+* Change these values to restyle the site. Components use the semantic
+* Tailwind utilities generated below instead of depending on palette names.
+*/
+:root {
+  --site-page: var(--color-ctp-base);
+  --site-foreground: var(--color-ctp-text);
+
+  --site-link: var(--color-ctp-blue);
+  --site-code: var(--color-ctp-mantle);
+  --site-muted: var(--color-ctp-subtext0);
+  --site-accent: var(--color-ctp-mauve);
+
+  --site-foreground-hover: var(--color-ctp-subtext1);
+  --site-control-hover: var(--color-ctp-surface0);
+  --site-link-hover: var(--color-ctp-sapphire);
+  --site-content-hover: var(--color-ctp-surface0);
+  --site-accent-hover: var(--color-ctp-lavender);
+
+  --site-status-active: var(--color-ctp-peach);
+  --site-status-completed: var(--color-ctp-green);
+  --site-status-maintained: var(--color-ctp-teal);
+  --site-status-archived: var(--color-ctp-overlay1);
+  --site-status-planned: var(--color-ctp-yellow);
+}
+@theme inline {
+  --color-page: var(--site-page);
+  --color-foreground: var(--site-foreground);
+  --color-link: var(--site-link);
+  --color-code: var(--site-code);
+  --color-muted: var(--site-muted);
+  --color-accent: var(--site-accent);
+  --color-foreground-hover: var(--site-foreground-hover);
+  --color-control-hover: var(--site-control-hover);
+  --color-link-hover: var(--site-link-hover);
+  --color-content-hover: var(--site-content-hover);
+  --color-accent-hover: var(--site-accent-hover);
+  --color-status-active: var(--site-status-active);
+  --color-status-completed: var(--site-status-completed);
+  --color-status-maintained: var(--site-status-maintained);
+  --color-status-archived: var(--site-status-archived);
+  --color-status-planned: var(--site-status-planned);
+  --default-font-family: "IBM Plex Sans", sans-serif;
+}
+
+.arabic-text {
+	font-family: "Alexandria", sans-serif;
+}

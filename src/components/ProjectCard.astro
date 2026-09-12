@@ -1,21 +1,15 @@
 ---
+import { projectStatusClass } from "../config/projectStatusStyles";
 import type { Project } from "../lib/projects";
 
 const { project } = Astro.props as { project: Project };
 const liveUrl = project.live;
-const statusColorMap: Record<Project['status'], string> = {
-  Active: 'text-orange-800 dark:text-orange-400',
-  Completed: 'text-green-800 dark:text-green-400',
-  Maintained: 'text-lime-800 dark:text-lime-400',
-  Archived: 'text-gray-800 dark:text-gray-400',
-  Planned: 'text-yellow-800 dark:text-yellow-400',
-};
 
 const projectUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/projects/${project.slug}/`;
 ---
 
 <article id="project" class="flex flex-col xl:flex-row py-4 xl:py-2">
-  <h1 id="project-type" class="xl:p-4 uppercase text-l font-extrabold text-blue-900 dark:text-blue-300 min-w-3xs">
+  <h1 id="project-type" class="xl:p-4 uppercase text-l font-extrabold text-accent min-w-3xs">
       { project.category.join(', ') }
   </h1>
   <div class="flex flex-col xl:px-4 grow">
@@ -25,53 +19,53 @@ const projectUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/projects/${pr
             { project.title }
         </h1>
         <div class="grow"></div>
-        <h1 class="text-slate-700 dark:text-slate-400 text-center">
+        <h1 class="text-muted text-center">
             { project.year }
         </h1>        
       </div>
-      <div class="flex text-slate-700 dark:text-slate-400">
-        <p class="text-slate-700 dark:text-slate-400 text-center">
+      <div class="flex text-muted">
+        <p class="text-center">
             { project.subtitle }
         </p>
         <div class="grow"></div>
-        <p class:list={["text-center font-extrabold", statusColorMap[project.status]]}>
+        <p class:list={["text-center font-extrabold", projectStatusClass[project.status]]}>
           {project.status}
         </p>
       </div>
-      <div class="flex flex-wrap items-center gap-4 pt-2 text-slate-700 dark:text-slate-400 justify-center">
+      <div class="flex flex-wrap items-center gap-4 pt-2 text-muted fill-muted justify-center">
         <a
           href={ project.repository.link }
           target="_blank"
           rel="noreferrer"
-          class="hover:text-slate-800 active:text-slate-800 dark:hover:text-slate-200 dark:active:text-slate-200 transition duration-300 ease-in-out"
+          class="hover:text-foreground-hover active:text-foreground-hover hover:fill-foreground-hover active:fill-foreground-hover transition duration-300 ease-in-out flex flex-row"
         >
-          {project.repository.provider} <span class="material-symbols-outlined">arrow_outward</span>
+          {project.repository.provider} <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="m243-240-51-51 405-405H240v-72h480v480h-72v-357L243-240Z"/></svg>
         </a>
         {liveUrl && (
           <a
             href={liveUrl}
             target="_blank"
             rel="noreferrer"
-            class="hover:text-slate-800 active:text-slate-800 dark:hover:text-slate-200 dark:active:text-slate-200 transition duration-300 ease-in-out"
+            class="hover:text-foreground-hover active:text-foreground-hover hover:fill-foreground-hover active:fill-foreground-hover transition duration-300 ease-in-out flex flex-row"
           >
-            Live <span class="material-symbols-outlined">arrow_outward</span>
+            Live <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="m243-240-51-51 405-405H240v-72h480v480h-72v-357L243-240Z"/></svg>
           </a>
         )}
 
         <a
           href={projectUrl}
-          class="hover:text-slate-800 active:text-slate-800 dark:hover:text-slate-200 dark:active:text-slate-200 transition duration-300 ease-in-out"
+          class="hover:text-foreground-hover active:text-foreground-hover hover:fill-foreground-hover active:fill-foreground-hover transition duration-300 ease-in-out flex flex-row"
         >
-          View Project <span class="material-symbols-outlined">arrow_forward</span>
+          View Project <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M630-444H192v-72h438L429-717l51-51 288 288-288 288-51-51 201-201Z"/></svg>
         </a>
       </div>
       <p class="xl:p-4 xl:py-4 xl:pl-0 py-2">
         {project.description}
       </p>
-      <div class="hidden xl:flex xl:pl-0 flex-col xl:flex-row divide-y xl:divide-x xl:divide-y-0 divide-slate-700 dark:divide-slate-400 text-slate-700 dark:text-slate-400 xl:px-4">
+      <div class="hidden xl:flex xl:pl-0 flex-col xl:flex-row divide-y xl:divide-x xl:divide-y-0 divide-muted text-muted xl:px-4">
         {project.technologies.join(', ')}
       </div>
-      <div class="text-slate-700 dark:text-slate-400 py-2 xl:hidden">
+      <div class="text-muted py-2 xl:hidden">
         {project.technologies.join(', ')}
       </div>
     </div>

@@ -1,6 +1,11 @@
 ---
+const navLink =
+  "uppercase text-xs xl:text-xl flex items-center justify-center transition duration-300 ease-in-out hover:text-link-hover hover:fill-link-hover";
 
+const iconLink =
+  "p-2 rounded-xl flex items-center justify-center transition-colors hover:bg-control-hover active:bg-control-hover";
 ---
+
 <script>
   const updateThemeIcons = (isDark: boolean) => {
     const lightModeIcon = document.getElementById("lightModeIcon");
@@ -8,94 +13,192 @@
 
     if (lightModeIcon) lightModeIcon.hidden = !isDark;
     if (darkModeIcon) darkModeIcon.hidden = isDark;
-    document.getElementById("themeToggle")?.setAttribute("aria-pressed", String(isDark));
+
+    document
+      .getElementById("themeToggle")
+      ?.setAttribute("aria-pressed", String(isDark));
   };
 
   const initThemeToggle = () => {
     const button = document.getElementById("themeToggle");
+
     if (!button || button.dataset.themeReady === "true") return;
 
     button.dataset.themeReady = "true";
-    updateThemeIcons(document.documentElement.classList.contains("dark"));
+
+    updateThemeIcons(
+      document.documentElement.classList.contains("dark")
+    );
+
     button.addEventListener("click", () => {
-      const isDark = !document.documentElement.classList.contains("dark");
+      const isDark =
+        !document.documentElement.classList.contains("dark");
+
       document.documentElement.classList.toggle("dark", isDark);
-      localStorage.setItem("theme", isDark ? "dark" : "light");
+      document.documentElement.classList.toggle("mocha", isDark);
+
+      localStorage.setItem(
+        "theme",
+        isDark ? "dark" : "light"
+      );
+
       updateThemeIcons(isDark);
     });
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initThemeToggle, { once: true });
+    document.addEventListener(
+      "DOMContentLoaded",
+      initThemeToggle,
+      { once: true }
+    );
   } else {
     initThemeToggle();
   }
-  document.addEventListener("astro:page-load", initThemeToggle);
+
+  document.addEventListener(
+    "astro:page-load",
+    initThemeToggle
+  );
 </script>
 
-<div class="flex flex-wrap xl:gap-4 justify-center items-center p-4 flex-none w-full bg-slate-500 dark:bg-slate-800">
-		<a class="uppercase text-xs xl:text-2xl flex shrink-0 xl:gap-0.5 justify-center items-center font-extrabold hover:text-slate-800 dark:hover:text-slate-400 transition duration-300 ease-in-out" href="/">
-			<h1 class="hidden md:block">
-				Yousef El-Ghoul
-			</h1>
-			<h1 class="md:hidden">
-				<span class="material-symbols-outlined">home</span>
-			</h1>
-		</a>
-		<div class="grow"></div>
-		<!-- <a class="header-link" href="/certifications">
-			<h1>
-				Certifications	
-			</h1>
-		</a>
-		<h1 class="px-2">&#8226</h1> -->
-		<a class="header-link" href="/projects">
-			<h1>
-				Projects	
-			</h1>
-		</a>
-		<h1 class="px-2">&#8226</h1>
-		<a class="header-link" href="/experience">
-			<h1>
-				Experience
-			</h1>
-		</a>
-		<h1 class="hidden px-2 md:inline">&#8226</h1>
-		<a class="header-link gap-1 hidden md:inline" href="https://resume.yousefelghoul.dev" target="_blank">
-			<h1 class="hidden md:inline">
-				Resume
-			</h1>
-			<h1 class="hidden md:inline">
-				<span class="material-symbols-outlined !text-xs xl:!text-xl !hidden md:!inline">open_in_new</span>
-			</h1>
-		</a>
-		<div class="md:hidden grow"></div>
-		<a href="https://resume.yousefelghoul.dev" target="_blank">
-			<button
-				id="resume"
-				type="button"
-				class="md:hidden p-2 rounded-xl hover:bg-slate-400 hover:dark:bg-slate-700 active:bg-slate-400 active:dark:bg-slate-700 transition-colors flex items-center justify-center"		>
-				<span class="material-symbols-outlined">article</span>
-			</button>		
-		</a>
-		<button
-			id="themeToggle"
-			type="button"
-			class="p-2 rounded-xl hover:bg-slate-400 hover:dark:bg-slate-700 active:bg-slate-400 active:dark:bg-slate-700 transition-colors flex items-center justify-center"
-		>
-		<span id="lightModeIcon" class="material-symbols-outlined text-xs" hidden>
-			light_mode
-		</span>
-		<span id="darkModeIcon" class="material-symbols-outlined text-xs">
-			dark_mode
-		</span>
-		</button>
-</div>
+<header
+  class="
+    absolute z-50
+    flex w-full items-center
+    gap-2 md:gap-4
+    p-4
+    bg-page
+    border-b-2 border-foreground-hover
+  "
+>
+  <!-- Identity -->
+  <a
+    href="/"
+    class="
+      uppercase
+      flex items-center
+      font-extrabold
+      text-lg md:text-xl xl:text-2xl
+      transition duration-300 ease-in-out
+      hover:text-link-hover
+    "
+  >
+    <span class="hidden md:inline">
+      Yousef El-Ghoul
+    </span>
 
-<style>
-	@reference "tailwindcss";
+    <span class="md:hidden">
+      YG
+    </span>
+  </a>
 
-	.header-link {
-		@apply uppercase text-xs xl:text-xl flex xl:gap-0.5 justify-center items-center hover:text-slate-800 dark:hover:text-slate-400 transition duration-300 ease-in-out
-	}
-</style>
+  <!-- Flexible middle space -->
+  <div class="grow"></div>
+
+  <!-- Projects: text on every size -->
+  <a
+    href="/projects"
+    class={navLink}
+  >
+    Projects
+  </a>
+
+  <!-- Experience: desktop text -->
+  <a
+    href="/experience"
+    class={`${navLink} hidden md:flex`}
+  >
+    Experience
+  </a>
+
+  <!-- Experience: mobile icon -->
+  <a
+    href="/experience"
+    class={`${iconLink} md:hidden`}
+    aria-label="Experience"
+    title="Experience"
+  >
+    <svg
+      class="w-5 h-5"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 -960 960 960"
+    >
+      <path d="M146.67-186.67v-466.66 466.66-19.5 19.5Zm0 66.67q-27 0-46.84-19.83Q80-159.67 80-186.67v-466.66q0-27 19.83-46.84Q119.67-720 146.67-720H320v-93.33q0-26.34 19.83-46.5Q359.67-880 386.67-880h186.66q27 0 46.84 20.17Q640-839.67 640-813.33V-720h173.33q27 0 46.84 19.83Q880-680.33 880-653.33v207q-15.33-11.67-31.67-20.84-16.33-9.16-35-16.83v-169.33H146.67v466.66h317q3.66 17.67 9.66 34.34 6 16.66 14.34 32.33h-341Zm240-600h186.66v-93.33H386.67V-720Zm195.5 617.83q-57.5-57.5-57.5-137.83 0-80.33 57.5-137.83 57.5-57.5 137.83-57.5 80.33 0 137.83 57.5 57.5 57.5 57.5 137.83 0 80.33-57.5 137.83-57.5 57.5-137.83 57.5-80.33 0-137.83-57.5ZM738-244v-120h-41.33v133.18l94.66 89.49 27.34-27.34L738-244Z"/>
+    </svg>
+  </a>
+
+  <!-- Resume: desktop -->
+  <a
+    href="https://resume.yousefelghoul.dev"
+    target="_blank"
+    rel="noreferrer"
+    class={`${navLink} hidden md:flex gap-1`}
+  >
+    <span>Resume</span>
+
+    <svg
+      class="w-5 h-5"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 -960 960 960"
+    >
+      <path d="M246.67-244 200-290.67l402.67-402.66H236V-760h480v480h-66.67v-366.67L246.67-244Z"/>
+    </svg>
+  </a>
+
+  <!-- Resume: mobile -->
+  <a
+    href="https://resume.yousefelghoul.dev"
+    target="_blank"
+    rel="noreferrer"
+    class={`${iconLink} md:hidden`}
+    aria-label="Resume"
+    title="Resume"
+  >
+    <svg
+      class="w-5 h-5"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 -960 960 960"
+    >
+      <path d="M278-279.33h276.67V-346H278v66.67Zm0-167.34h404v-66.66H278v66.66ZM278-614h404v-66.67H278V-614Zm-91.33 494q-27 0-46.84-19.83Q120-159.67 120-186.67v-586.66q0-27 19.83-46.84Q159.67-840 186.67-840h586.66q27 0 46.84 19.83Q840-800.33 840-773.33v586.66q0 27-19.83 46.84Q800.33-120 773.33-120H186.67Zm0-66.67h586.66v-586.66H186.67v586.66Zm0-586.66v586.66-586.66Z"/>
+    </svg>
+  </a>
+
+  <!-- Divider -->
+  <div
+    class="h-6 w-px bg-muted mx-1"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Theme switcher -->
+  <button
+    id="themeToggle"
+    type="button"
+    aria-label="Toggle color theme"
+    aria-pressed="false"
+    class={iconLink}
+  >
+    <span
+      id="lightModeIcon"
+      hidden
+    >
+      <svg
+        class="w-5 h-5"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 -960 960 960"
+      >
+        <path d="M565-395q35-35 35-85t-35-85q-35-35-85-35t-85 35q-35 35-35 85t35 85q35 35 85 35t85-35Zm-221 51q-56-56-56-136t56-136q56-56 136-56t136 56q56 56 56 136t-56 136q-56 56-136 56t-136-56ZM216-444H48v-72h168v72Zm696 0H744v-72h168v72ZM444-744v-168h72v168h-72Zm0 696v-168h72v168h-72ZM269-642 166-742l51-55 102 104-50 51Zm474 475L642-268l49-51 103 101-51 51ZM640-691l102-101 51 49-100 103-53-51ZM163-217l105-99 49 47-98 104-56-52Zm317-263Z"/>
+      </svg>
+    </span>
+
+    <span id="darkModeIcon">
+      <svg
+        class="w-5 h-5"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 -960 960 960"
+      >
+        <path d="M479.96-144Q340-144 242-242t-98-238q0-140 97.93-238t237.83-98q13.06 0 25.65 1 12.59 1 25.59 3-39 29-62 72t-23 92q0 85 58.5 143.5T648-446q49 0 92-23t72-62q2 13 3 25.59t1 25.65q0 139.9-98.04 237.83t-238 97.93Zm.04-72q82 0 148.78-47.07Q695.55-310.15 727-386q-20 5-39.67 8.5Q667.67-374 648-374q-113.86 0-193.93-80.07Q374-534.14 374-648q0-19.67 3.5-39.33Q381-707 386-727q-75.85 31.45-122.93 98.22Q216-562 216-480q0 110 77 187t187 77Zm-14-250Z"/>
+      </svg>
+    </span>
+  </button>
+</header>

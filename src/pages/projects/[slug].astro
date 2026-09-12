@@ -17,11 +17,7 @@ export async function getStaticPaths() {
 const { project } = Astro.props as { project: Project };
 ---
 
-<head>
-  <title>YG | {project.title}</title>
-</head>
-
-<Main>
+<Main title={`YG | ${project.title}`}>
   <Header />
   <ProjectDetailsPage project={project} />
   <Footer />

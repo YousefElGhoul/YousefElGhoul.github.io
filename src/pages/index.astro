@@ -7,11 +7,7 @@ import Footer from '../components/Footer.astro';
 const response = await fetch('https://resume.yousefelghoul.dev/hne.json');
 const HnE = await response.json();
 ---
-<head>
-	<title>YG | Main Page</title>
-</head>
-
-<Main>
+<Main title="YG | Main Page">
 	<Header />
 	<MainContent HnE={HnE} />
 	<Footer />

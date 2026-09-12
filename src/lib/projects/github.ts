@@ -1,3 +1,4 @@
+import { Buffer } from "node:buffer";
 import { ReadmeNotFoundError, type DiscoveredRepository } from "./types";
 
 const apiUrl = "https://api.github.com";
@@ -89,5 +90,5 @@ export async function getGitHubReadme(repository: DiscoveredRepository) {
   const file = await response.json() as { path: string; content: string; encoding: string };
   if (file.encoding !== "base64") throw new Error("Unsupported GitHub README encoding");
   repository.readmePath = file.path;
-  return new TextDecoder().decode(Uint8Array.from(atob(file.content.replace(/\s/g, "")), (character) => character.charCodeAt(0)));
+  return Buffer.from(file.content, "base64").toString("utf8");
 }

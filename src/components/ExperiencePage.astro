@@ -7,14 +7,16 @@ const { jobs } = Astro.props;
 import Experience, { type Job }  from '../components/ExperienceCard.astro';
 ---
 
-<div class="flex flex-col grow p-8 md:p-16 bg-slate-400 dark:bg-slate-700">
+<div class="flex flex-col grow p-8 mt-16 md:p-16 z-10">
 	<section id="hero" class="flex flex-col justify-center">
 		<h1 id="title" class="flex flex-row text-4xl md:text-5xl w-full">
             Experience
         </h1>
-        <hr class="border-t-2 border-slate-700 dark:border-slate-400 my-4 md:my-9">
+        <hr class="border-t-2 border-muted my-4 md:my-9">
 	</section>
-    {jobs.map((job) => (
-        <Experience job={job} />
-    ))}
+    <section class="rounded-2xl border border-page/40 bg-page/20 py-6 pb-8 backdrop-blur-md">
+        {jobs.map((job) => (
+            <Experience job={job} />
+        ))}
+    </section>
 </div>

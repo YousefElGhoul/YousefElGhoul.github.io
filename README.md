@@ -2,6 +2,12 @@
 
 Personal portfolio built with Astro and Tailwind CSS. The site is statically generated and deployed to GitHub Pages.
 
+## Styling
+
+The complete light and dark color palettes live in `src/styles/theme.css`. Edit the `--site-*` values in `:root` and `.dark` to change a semantic color everywhere without touching component markup or responsive classes.
+
+Components keep their own layout and interaction styles. Shared project status class names live in `src/config/projectStatusStyles.ts`, while their colors remain in the central theme.
+
 ## Project Data
 
 Portfolio projects are discovered from public GitHub and GitLab repositories during `astro build`. The configured owners live in `src/config/projectSources.ts`.

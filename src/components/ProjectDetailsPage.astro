@@ -1,4 +1,5 @@
 ---
+import { projectStatusClass } from "../config/projectStatusStyles";
 import type { Project } from "../lib/projects";
 import { renderProjectReadme } from "../lib/projects/readme";
 
@@ -8,76 +9,248 @@ interface Props {
 
 const { project } = Astro.props;
 const readmeHtml = await renderProjectReadme(project);
-
-const statusColorMap: Record<Project['status'], string> = {
-  Active: 'text-orange-800 dark:text-orange-400',
-  Completed: 'text-green-800 dark:text-green-400',
-  Maintained: 'text-lime-800 dark:text-lime-400',
-  Archived: 'text-gray-800 dark:text-gray-400',
-  Planned: 'text-yellow-800 dark:text-yellow-400',
-};
 ---
 
-<main class="flex flex-col grow p-8 md:p-16 bg-slate-400 dark:bg-slate-700">
+<main class="flex flex-col grow p-8 mt-16 md:p-16 bg-page/50 backdrop-blur-md">
   <a
     href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/projects/`}
-    class="mb-6 text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition duration-300 ease-in-out"
+    class="hover:text-foreground hover:fill-foreground transition duration-300 ease-in-out mb-6 text-muted fill-muted flex flex-row"
   >
-    <span class="material-symbols-outlined">arrow_back</span> Projects
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="20px"
+      viewBox="0 -960 960 960"
+      width="20px"
+    >
+      <path d="m330-444 201 201-51 51-288-288 288-288 51 51-201 201h438v72H330Z" />
+    </svg>
+    Projects
   </a>
 
   <header class="flex flex-col xl:flex-row xl:gap-8">
-    <p class="xl:py-4 uppercase text-l font-extrabold text-blue-900 dark:text-blue-300 min-w-3xs">
-      {project.category.join(', ')}
+    <p class="xl:py-4 uppercase text-l font-extrabold text-accent min-w-3xs">
+      {project.category.join(", ")}
     </p>
+
     <div class="grow xl:py-4">
       <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
-        <h1 class="text-4xl md:text-5xl font-extrabold">{project.title}</h1>
+        <h1 class="text-4xl md:text-5xl font-extrabold">
+          {project.title}
+        </h1>
+
         <span class="grow"></span>
-        <p class="text-slate-700 dark:text-slate-400">{project.year}</p>
+
+        <p class="text-muted">
+          {project.year}
+        </p>
       </div>
+
       <div class="flex flex-wrap items-center gap-x-4 gap-y-1 pt-1">
-        <p class="text-lg text-slate-700 dark:text-slate-400">{project.subtitle}</p>
+        <p class="text-lg text-muted">
+          {project.subtitle}
+        </p>
+
         <span class="grow"></span>
-        <p class:list={["font-extrabold", statusColorMap[project.status]]}>{project.status}</p>
+
+        <p class:list={["font-extrabold", projectStatusClass[project.status]]}>
+          {project.status}
+        </p>
       </div>
-      <p class="py-6">{project.description}</p>
-      <div class="flex flex-wrap gap-x-5 gap-y-2 text-slate-700 dark:text-slate-400">
-        <a href={project.repository.link} target="_blank" rel="noreferrer" class="hover:text-slate-900 dark:hover:text-slate-200 transition duration-300 ease-in-out">
-          {project.repository.provider} <span class="material-symbols-outlined">arrow_outward</span>
+
+      <p class="py-6">
+        {project.description}
+      </p>
+
+      <div class="flex flex-wrap gap-x-5 gap-y-2 text-muted fill-muted">
+        <a
+          href={project.repository.link}
+          target="_blank"
+          rel="noreferrer"
+          class="hover:text-foreground hover:fill-foreground transition duration-300 ease-in-out flex flex-row"
+        >
+          {project.repository.provider}
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="20px"
+            viewBox="0 -960 960 960"
+            width="20px"
+          >
+            <path d="m243-240-51-51 405-405H240v-72h480v480h-72v-357L243-240Z" />
+          </svg>
         </a>
-        {project.live && (
-          <a href={project.live} target="_blank" rel="noreferrer" class="hover:text-slate-900 dark:hover:text-slate-200 transition duration-300 ease-in-out">
-            Live <span class="material-symbols-outlined">arrow_outward</span>
-          </a>
-        )}
+
+        {
+          project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noreferrer"
+              class="hover:text-foreground hover:fill-foreground transition duration-300 ease-in-out flex flex-row"
+            >
+              Live
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="20px"
+                viewBox="0 -960 960 960"
+                width="20px"
+              >
+                <path d="m243-240-51-51 405-405H240v-72h480v480h-72v-357L243-240Z" />
+              </svg>
+            </a>
+          )
+        }
       </div>
-      <p class="pt-4 text-slate-700 dark:text-slate-400">{project.technologies.join(', ')}</p>
+
+      <p class="pt-4 text-muted">
+        {project.technologies.join(", ")}
+      </p>
     </div>
   </header>
 
-  <hr class="border-t-2 border-slate-700 dark:border-slate-400 my-8" />
-  <article class="readme min-w-0 w-full max-w-5xl break-words" set:html={readmeHtml} />
+  <hr class="border-t-2 border-muted my-8" />
+
+  <article
+    class="readme min-w-0 w-full break-words"
+    set:html={readmeHtml}
+  />
 </main>
 
 <style>
-  @reference "../styles/global.css";
+  .readme :global(h1) {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 800;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
 
-  .readme :global(h1) { @apply text-3xl md:text-4xl font-extrabold mt-10 mb-4; }
-  .readme :global(h2) { @apply text-2xl md:text-3xl font-bold mt-9 mb-3 border-b border-slate-700 dark:border-slate-400 pb-2; }
-  .readme :global(h3) { @apply text-xl md:text-2xl font-bold mt-7 mb-2; }
-  .readme :global(h4) { @apply text-lg font-bold mt-6 mb-2; }
-  .readme :global(p) { @apply my-4 leading-7; }
-  .readme :global(a) { @apply underline text-blue-900 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-200; }
-  .readme :global(ul) { @apply list-disc pl-7 my-4; }
-  .readme :global(ol) { @apply list-decimal pl-7 my-4; }
-  .readme :global(li) { @apply my-1; }
-  .readme :global(blockquote) { @apply border-l-4 border-slate-700 dark:border-slate-400 pl-4 text-slate-700 dark:text-slate-400; }
-  .readme :global(code) { @apply rounded bg-slate-300 dark:bg-slate-800 px-1.5 py-0.5 text-sm; }
-  .readme :global(pre) { @apply overflow-x-auto rounded bg-slate-300 dark:bg-slate-800 p-4 my-5; }
-  .readme :global(pre code) { @apply bg-transparent p-0; }
-  .readme :global(table) { @apply block overflow-x-auto w-full border-collapse my-5; }
-  .readme :global(th), .readme :global(td) { @apply border border-slate-700 dark:border-slate-400 px-3 py-2 text-left; }
-  .readme :global(img) { @apply max-w-full h-auto my-5; }
-  .readme :global(hr) { @apply border-slate-700 dark:border-slate-400 my-8; }
+  .readme :global(h2) {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--site-muted);
+  }
+
+  .readme :global(h3) {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .readme :global(h4) {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .readme :global(h5),
+  .readme :global(h6) {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .readme :global(p) {
+    margin-block: 1rem;
+    line-height: 1.75rem;
+  }
+
+  .readme :global(a) {
+    color: var(--site-link);
+    text-decoration: underline;
+    transition: color 300ms ease-in-out;
+  }
+
+  .readme :global(a:hover) {
+    color: var(--site-accent-hover);
+  }
+
+  .readme :global(ul) {
+    list-style-type: disc;
+    padding-left: 1.75rem;
+    margin-block: 1rem;
+  }
+
+  .readme :global(ol) {
+    list-style-type: decimal;
+    padding-left: 1.75rem;
+    margin-block: 1rem;
+  }
+
+  .readme :global(li) {
+    margin-block: 0.25rem;
+  }
+
+  .readme :global(blockquote) {
+    border-left: 4px solid var(--site-muted);
+    padding-left: 1rem;
+    margin-block: 1rem;
+    color: var(--site-muted);
+  }
+
+  .readme :global(code) {
+    background: var(--site-code);
+    border-radius: 0.25rem;
+    padding: 0.125rem 0.375rem;
+    font-size: 0.875rem;
+    font-family: "IBM Plex Mono", monospace;
+  }
+
+  .readme :global(pre) {
+    overflow-x: auto;
+    background: var(--site-code);
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-block: 1.25rem;
+  }
+
+  .readme :global(pre code) {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .readme :global(table) {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin-block: 1.25rem;
+  }
+
+  .readme :global(th),
+  .readme :global(td) {
+    border: 1px solid var(--site-muted);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+
+  .readme :global(th) {
+    background: var(--site-code);
+    font-weight: 700;
+  }
+
+  .readme :global(img) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-block: 1.25rem;
+  }
+
+  .readme :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--site-muted);
+    margin-block: 2rem;
+  }
 </style>
