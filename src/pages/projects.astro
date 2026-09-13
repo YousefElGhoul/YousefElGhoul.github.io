@@ -7,7 +7,10 @@ import { getProjects } from '../lib/projects';
 
 const myProjects = await getProjects();
 ---
-<Main title="YG | Projects">
+<Main
+	title="Projects | Yousef El-Ghoul"
+	description="Selected software engineering projects by Yousef El-Ghoul, including backend systems, full-stack applications, developer tooling, and infrastructure projects."
+>
 	<Header />
 	<MainContent projects={myProjects} />
 	<Footer />

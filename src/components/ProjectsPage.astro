@@ -16,12 +16,14 @@ const { projects } = Astro.props;
         </h1>
         <hr class="border-t-2 border-muted my-4 md:my-9">
 	</section>
-    {projects.map((project) => (
-        <ProjectCard project={project} />
-    ))}
-    {projects.length === 0 && (
-        <p class="text-muted">
-            No portfolio projects are currently published.
-        </p>
-    )}
+    <section class="rounded-2xl border border-page/40 bg-page/40 p-6 pb-8 backdrop-blur-md">
+        {projects.map((project) => (
+            <ProjectCard project={project} />
+        ))}
+        {projects.length === 0 && (
+            <p class="text-muted">
+                No portfolio projects are currently published.
+            </p>
+        )}
+    </section>
 </div>

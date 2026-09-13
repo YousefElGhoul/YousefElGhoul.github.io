@@ -1,9 +1,9 @@
 ---
 const navLink =
-  "uppercase text-xs xl:text-xl flex items-center justify-center transition duration-300 ease-in-out hover:text-link-hover hover:fill-link-hover";
+  "uppercase text-xs xl:text-xl flex items-center justify-center transition duration-300 ease-in-out text-link fill-link hover:text-link-hover hover:fill-link-hover";
 
 const iconLink =
-  "p-2 rounded-xl flex items-center justify-center transition-colors hover:bg-control-hover active:bg-control-hover";
+  "p-2 rounded-xl flex items-center justify-center transition-colors hover:bg-control-hover text-link hover:text-link-hover hover:fill-link-hover fill-link active:bg-control-hover";
 ---
 
 <script>
@@ -67,7 +67,7 @@ const iconLink =
     absolute z-50
     flex w-full items-center
     gap-2 md:gap-4
-    p-4
+    p-4 md:px-16
     bg-page
     border-b-2 border-foreground-hover
   "
@@ -81,6 +81,7 @@ const iconLink =
       font-extrabold
       text-lg md:text-xl xl:text-2xl
       transition duration-300 ease-in-out
+      text-link
       hover:text-link-hover
     "
   >

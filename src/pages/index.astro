@@ -4,10 +4,47 @@ import Header from '../components/Header.astro';
 import MainContent from '../components/MainPage.astro';
 import Footer from '../components/Footer.astro';
 
+const personSchema = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	"@id": "https://yousefelghoul.dev/#person",
+
+	name: "Yousef El-Ghoul",
+	alternateName: "Yousef El Ghoul",
+
+	url: "https://yousefelghoul.dev",
+
+	jobTitle: "Software Engineer",
+
+	description:
+		"Software engineer focused on backend development with Java, Spring Boot, PostgreSQL, REST APIs, and cloud-native development.",
+
+	sameAs: [
+		"https://github.com/YousefElGhoul",
+		"https://gitlab.com/YousefElGhoul",
+		"https://www.linkedin.com/in/yousefelghoul/"
+	],
+
+	knowsAbout: [
+		"Software Engineering",
+		"Backend Development",
+		"Java",
+		"Spring Boot",
+		"PostgreSQL",
+		"REST APIs",
+		"Docker",
+		"Cloud Computing"
+	]
+};
+
 const response = await fetch('https://resume.yousefelghoul.dev/hne.json');
 const HnE = await response.json();
 ---
-<Main title="YG | Main Page">
+<Main
+	title="Yousef El-Ghoul | Software Engineer"
+	description="Yousef El-Ghoul is a software engineer focused on backend development with Java, Spring Boot, PostgreSQL, REST APIs, and cloud-native development."
+	schema={personSchema}
+>
 	<Header />
 	<MainContent HnE={HnE} />
 	<Footer />

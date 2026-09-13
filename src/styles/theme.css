@@ -8,43 +8,58 @@
   --site-page: var(--color-ctp-base);
   --site-foreground: var(--color-ctp-text);
 
-  --site-link: var(--color-ctp-blue);
+  --site-link: var(--color-ctp-text);
   --site-code: var(--color-ctp-mantle);
   --site-muted: var(--color-ctp-subtext0);
   --site-accent: var(--color-ctp-mauve);
+  --site-accent2: var(--color-ctp-pink);
 
   --site-foreground-hover: var(--color-ctp-subtext1);
   --site-control-hover: var(--color-ctp-surface0);
   --site-link-hover: var(--color-ctp-sapphire);
   --site-content-hover: var(--color-ctp-surface0);
   --site-accent-hover: var(--color-ctp-lavender);
+  --site-accent2-hover: var(--color-ctp-sapphire);
 
   --site-status-active: var(--color-ctp-peach);
   --site-status-completed: var(--color-ctp-green);
   --site-status-maintained: var(--color-ctp-teal);
   --site-status-archived: var(--color-ctp-overlay1);
   --site-status-planned: var(--color-ctp-yellow);
+
+  --site-bg-image: url("../assets/latte.webp");
 }
+
+.dark {
+  --site-bg-image: url("../assets/mocha.webp");
+}
+
 @theme inline {
   --color-page: var(--site-page);
   --color-foreground: var(--site-foreground);
+
   --color-link: var(--site-link);
   --color-code: var(--site-code);
   --color-muted: var(--site-muted);
   --color-accent: var(--site-accent);
+  --color-accent2: var(--site-accent2);
+  
   --color-foreground-hover: var(--site-foreground-hover);
   --color-control-hover: var(--site-control-hover);
   --color-link-hover: var(--site-link-hover);
   --color-content-hover: var(--site-content-hover);
   --color-accent-hover: var(--site-accent-hover);
+  --color-accent-hover2: var(--site-accent-hover2);
+  
   --color-status-active: var(--site-status-active);
   --color-status-completed: var(--site-status-completed);
   --color-status-maintained: var(--site-status-maintained);
   --color-status-archived: var(--site-status-archived);
   --color-status-planned: var(--site-status-planned);
-  --default-font-family: "IBM Plex Sans", sans-serif;
+  
+  --default-font-family: "IBM Plex Sans Variable", sans-serif;
 }
 
 .arabic-text {
-	font-family: "Alexandria", sans-serif;
+	font-family: "Alexandria Variable", sans-serif;
 }

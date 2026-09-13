@@ -3,24 +3,55 @@ import "../styles/global.css";
 
 interface Props {
 	title: string;
+	description: string;
+	schema?: object;
+	ogImage?: string;
 }
 
-const { title } = Astro.props;
+const {
+	title,
+	description,
+	schema,
+	ogImage = "https://yousefelghoul.dev/og.png"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en" class="dark mocha flex flex-col m-0 w-full min-h-screen">
+<html lang="en" class="dark mocha flex flex-col m-0 w-full min-h-screen bg-page bg-[image:var(--site-bg-image)] bg-cover bg-no-repeat bg-right-bottom">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta property="og:image" content="/images/mocha.png" />
-		<title>{title}</title>
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 
-		<script src="https://kit.fontawesome.com/ca7138c89a.js" crossorigin="anonymous"></script>
+		<meta name="description" content={description} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Yousef El-Ghoul" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:image" content={ogImage} />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+
+		<title>{title}</title>
 		
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="canonical" href={canonicalURL} />
 		<meta name="generator" content={Astro.generator} />
+
+		{
+			schema && (
+				<script
+					type="application/ld+json"
+					set:html={JSON.stringify(schema)}
+				/>
+			)
+		}
 	</head>
 	<script is:inline>
       const theme = (() => {
@@ -36,17 +67,8 @@ const { title } = Astro.props;
       
       window.localStorage.setItem("theme", theme);
     </script>
-	<body class="overflow-x-hidden flex flex-col m-0 w-full min-h-screen text-foreground fill-foreground bg-cover bg-[url('/images/latte.png')] dark:bg-[url('/images/mocha.png')] bg-[position:right_bottom] relative">
+	<body class="overflow-x-hidden flex flex-col m-0 w-full min-h-screen text-foreground fill-foreground bg-transparent relative">
 		<div class="absolute inset-0 bg-page/50 backdrop-blur-md"></div>
 		<slot />
 	</body>
 </html>
-
-	<style>
-		@reference "tailwindcss";
-
-		html,
-		body {
-			min-height: 100dvh;
-		}
-	</style>

@@ -134,13 +134,17 @@ const { HnE } = Astro.props;
         rel="noreferrer"
         class="
           inline-flex items-center justify-center gap-2
-          rounded-xl border-2 border-page
-          bg-black/20 px-4 py-3
+          rounded-xl
+          border-2 border-page
+          bg-page/20
+          px-4 py-3
           text-sm font-medium
           backdrop-blur-md
           transition duration-300 ease-in-out
-          hover:bg-black/50
-          sm:text-base xl:text-lg
+          hover:bg-control-hover
+          hover:border-accent
+          sm:text-base
+          xl:text-lg
         "
       >
         <svg
@@ -188,7 +192,8 @@ const { HnE } = Astro.props;
           transition duration-300
           hover:bg-page/30
           sm:p-5
-          md:w-1/2
+          md:w-lg
+          xl:w-1/2
         "
       >
         <!-- Hidden on mobile -->
@@ -237,11 +242,11 @@ const { HnE } = Astro.props;
             <span>
               {HnE.headline.jobTitle}
             </span>
-            <span class="hidden md:block"> | </span>
+            <span class="hidden xl:block"> | </span>
             <span>
               {HnE.headline.expertise}
             </span>
-            <span class="hidden md:block"> | </span>
+            <span class="hidden xl:block"> | </span>
             <span>
               {HnE.headline.technologies.join(", ")}
             </span>
@@ -262,7 +267,8 @@ const { HnE } = Astro.props;
           transition duration-300
           hover:bg-page/30
           sm:p-5
-          md:w-1/2
+          md:w-lg
+          xl:w-1/2
         "
       >
         <!-- Hidden on mobile -->
@@ -273,7 +279,7 @@ const { HnE } = Astro.props;
             items-center justify-center
             rounded-xl
             bg-page
-            text-accent fill-accent
+            text-accent2 fill-accent2
             md:flex
           "
         >
@@ -293,7 +299,7 @@ const { HnE } = Astro.props;
             class="
               uppercase
               text-sm font-extrabold
-              text-accent
+              text-accent2
             "
           >
             Education
