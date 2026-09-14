@@ -5,11 +5,11 @@
 * Tailwind utilities generated below instead of depending on palette names.
 */
 :root {
-  --site-page: var(--color-ctp-base);
+  --site-page: var(--color-ctp-mantle);
   --site-foreground: var(--color-ctp-text);
 
   --site-link: var(--color-ctp-text);
-  --site-code: var(--color-ctp-mantle);
+  --site-code: var(--color-ctp-crust);
   --site-muted: var(--color-ctp-subtext0);
   --site-accent: var(--color-ctp-mauve);
   --site-accent2: var(--color-ctp-pink);

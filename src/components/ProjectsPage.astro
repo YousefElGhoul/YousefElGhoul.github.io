@@ -16,7 +16,14 @@ const { projects } = Astro.props;
         </h1>
         <hr class="border-t-2 border-muted my-4 md:my-9">
 	</section>
-    <section class="rounded-2xl border border-page/40 bg-page/40 p-6 pb-8 backdrop-blur-md">
+    <section class="
+        rounded-2xl
+        border border-page/80
+        bg-page/40 backdrop-blur-md
+        p-6 pb-8
+        transition duration-300
+        hover:bg-page/50
+    ">
         {projects.map((project) => (
             <ProjectCard project={project} />
         ))}
