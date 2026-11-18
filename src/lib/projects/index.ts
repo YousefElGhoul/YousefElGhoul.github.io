@@ -101,8 +101,11 @@ async function loadProjects() {
     projectsBySlug.set(project.slug, project);
   }
 
+  const statusOrder = { Active: 0, Maintained: 1, Completed: 2, Archived: 3, Planned: 4 };
   return [...projectsBySlug.values()].sort((a, b) =>
-    b.year.localeCompare(a.year, undefined, { numeric: true }) || a.title.localeCompare(b.title)
+    b.year.localeCompare(a.year, undefined, { numeric: true })
+    || statusOrder[a.status] - statusOrder[b.status]
+    || a.title.localeCompare(b.title)
   );
 }
 
